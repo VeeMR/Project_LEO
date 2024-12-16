@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class FlashlightDirection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform[] OtherObjects;
 
-    // Update is called once per frame
-    void Update()
+    public float DotProductAngle = 0.95f;
+
+    private void Update()
     {
-        
+        for (int i = 0; 0 < OtherObjects.Length; ++i)
+        {
+            Transform currentObjectToCheck = OtherObjects[i];
+
+            Vector3 DirectionToObject = (currentObjectToCheck.position - transform.position).normalized;
+            bool IsCloseEnoughToBeingInfrontOfMe = Vector3.Dot(transform.forward, DirectionToObject) > DotProductAngle;
+
+            EmissionEnabler emissionEnabler = currentObjectToCheck.GetComponent<EmissionEnabler>();
+            if (emissionEnabler)
+            {
+                emissionEnabler.SetEmission(IsCloseEnoughToBeingInfrontOfMe);
+            }
+        }
     }
 }

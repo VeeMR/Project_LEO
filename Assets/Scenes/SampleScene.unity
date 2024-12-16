@@ -1025,6 +1025,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &52252527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52252516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ed182a0133c0742897c3f7e7edad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OtherObjects:
+  - {fileID: 1496086313}
+  - {fileID: 549355659}
+  DotProductAngle: 0.95
+--- !u!114 &52252528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52252516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ed182a0133c0742897c3f7e7edad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OtherObjects: []
+  DotProductAngle: 0.95
 --- !u!1001 &52508952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9668,6 +9698,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 18361f7d37a358d4888db15239de0949, type: 3}
       insertIndex: -1
       addedObject: {fileID: 549355661}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 18361f7d37a358d4888db15239de0949, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 549355665}
   m_SourcePrefab: {fileID: 100100000, guid: 18361f7d37a358d4888db15239de0949, type: 3}
 --- !u!4 &549355659 stripped
 Transform:
@@ -9740,12 +9773,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 549355665}
+        m_TargetAssemblyTypeName: EmissionEnabler, Assembly-CSharp
+        m_MethodName: SetEmission
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 549355662}
         m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
         m_MethodName: set_useGravity
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 549355665}
+        m_TargetAssemblyTypeName: EmissionEnabler, Assembly-CSharp
+        m_MethodName: SetEmission
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9916,6 +9973,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.0407825, y: 0.24522768, z: 5.7267675}
   m_Center: {x: 1.4884365, y: -0.0064317132, z: -0.8603533}
+--- !u!114 &549355665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549355660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbd285944e60374296ce9b0952c2c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartWithEmissionOnByDefault: 1
 --- !u!1 &550250906
 GameObject:
   m_ObjectHideFlags: 0
@@ -19042,6 +19112,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 52252525}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 52252528}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 52252527}
   m_SourcePrefab: {fileID: 100100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
 --- !u!1 &931379610
 GameObject:
@@ -34269,7 +34345,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 8.5e-44, z: 1.348e-41, w: 1.8541387e-26}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7e-45, z: 2.7373e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
