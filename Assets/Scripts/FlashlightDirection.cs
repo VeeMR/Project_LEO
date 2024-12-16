@@ -10,7 +10,7 @@ public class FlashlightDirection : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; 0 < OtherObjects.Length; ++i)
+        for (int i = 0; i < OtherObjects.Length; ++i)
         {
             Transform currentObjectToCheck = OtherObjects[i];
 
