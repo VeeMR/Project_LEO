@@ -5,30 +5,57 @@ using UnityEngine;
 public class EmissionEnabler : MonoBehaviour
 {
     private List<Material> materials = new List<Material>();
-
+    public Light flashlight;
     public bool StartWithEmissionOnByDefault = true;
+    public float checkInterval = 0.1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         GetComponent<MeshRenderer>().GetMaterials(materials);
 
         if (StartWithEmissionOnByDefault)
             SetEmission(true);
+
+        InvokeRepeating("CheckFlashlight", 0, checkInterval);
     }
 
-    public void SetEmission(bool State)
+    void CheckFlashlight()
     {
-        for (int i = 0; i < materials.Count; ++i)
+        if (flashlight != null)
         {
-            if (State)
+            Vector3 toObject = transform.position - flashlight.transform.position;
+            float angle = Vector3.Angle(flashlight.transform.forward, toObject);
+
+            if (angle < flashlight.spotAngle / 2)
             {
-                materials[i].EnableKeyword("_EMISSION");
+                RaycastHit hit;
+                if (Physics.Raycast(flashlight.transform.position, toObject, out hit))
+                {
+                    if (hit.transform == transform)
+                    {
+                        SetEmission(true);
+                        return;
+                    }
+                }
             }
-            else 
+        }
+        SetEmission(false);
+    }
+
+    public void SetEmission(bool state)
+    {
+        foreach (var material in materials)
+        {
+            if (state)
             {
-                materials[i].DisableKeyword("_EMISSION");
+                material.EnableKeyword("_EMISSION");
+            }
+            else
+            {
+                material.DisableKeyword("_EMISSION");
             }
         }
     }
 }
+
+
